@@ -18,4 +18,4 @@ The app currently supports any of the below user stories which are struck throug
 - [ ] User can see a warning message if the CSV text box is empty or if the save operation failed.
 - [ ] User can convert CSV data to JSON. See CSV2JSON
 
-[app-ideas-repo](https://github.com/florinpop17/app-ideas/tree/master)
+[app-ideas-repo]: https://github.com/florinpop17/app-ideas/tree/master
