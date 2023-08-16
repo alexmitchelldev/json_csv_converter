@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./main.css">
+    <title>Alexmitchelldev's JSON to CSV Converter</title>
+</head>
+<body>
+    <div class="container">
+        <div class="content">
+            <div id="json-input">
+                <h1 class="data-box-title">JSON Input</h1>
+                <form action="">
+                    <!-- How to create a multi line text input with <textarea></textarea> -->
+                    <!-- https://www.w3docs.com/snippets/html/how-to-create-a-multi-line-text-input-field-in-html.html -->
+                    <textarea name="text" id="json-data-input" cols="50" rows="50" placeholder="Enter JSON data..."></textarea>
+                </form>
+            </div>
+            <div id="csv-output">
+                <h1 class="data-box-title">CSV Output</h1>
+                <form action="">
+                    <!-- How to make a textarea read only using readonly -->
+                    <!-- https://stackoverflow.com/questions/36824716/how-to-disable-text-input-in-textarea -->
+                    <textarea name="text" id="csv-data-output" cols="50" rows="50" placeholder="CSV Data will be outputted here..." readonly></textarea>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="./index.js"></script>
+</body>
+</html>
