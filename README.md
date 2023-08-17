@@ -3,11 +3,11 @@ It is written in plain html/css/JavaScript.
 The app currently supports any of the below user stories which are struck through.
 
 ## User Stories
-- [ ] User can paste JSON syntax into a text box
-- [ ] User can click a 'Convert' button to validate the JSON text box and convert it to CSV
-- [ ] User can see the converted CSV in another text box
+- [x] User can paste JSON syntax into a text box
+- [x] User can click a 'Convert' button to validate the JSON text box and convert it to CSV
+- [x] User can see the converted CSV in another text box
 - [ ] User can see an warning message if the JSON text box is empty or if it doesn't contain valid JSON
-- [ ] User can click a 'Clear' button to clear the contents of both the JSON and CSV text boxes.
+- [x] User can click a 'Clear' button to clear the contents of both the JSON and CSV text boxes.
 
 ## Bonus Features
 - [ ] User can enter the path to the JSON file on the local file system in a text box
