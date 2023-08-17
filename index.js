@@ -1,5 +1,7 @@
+const jsonInput = document.getElementById("json-data-input");
 const csvOutput = document.getElementById("csv-data-output");
 const convertButton = document.getElementById("convert-json-button");
+const clearDataButton = document.getElementById("clear-data-button");
 
 /**
  * 
@@ -115,6 +117,14 @@ const getRows = parsedJSON => {
 };
 
 convertButton.addEventListener("click", () => {
-    let jsonInput = document.getElementById("json-data-input");
-    convertJsonToCsv(jsonInput.value.toString());
+    convertJsonToCsv(jsonInput.value);
+})
+
+const clearData = () => {
+    jsonInput.value = null;
+    csvOutput.innerHTML = null;
+}
+
+clearDataButton.addEventListener("click", () => {
+    clearData();
 })
