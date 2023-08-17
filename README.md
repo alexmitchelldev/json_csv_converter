@@ -1,6 +1,6 @@
 This project was taken from [Florin Pop's App Ideas GitHub repository][app-ideas-repo].
 It is written in plain html/css/JavaScript.
-The app currently supports any of the below user stories which are struck through.
+The app currently supports any of the below completed user stories.
 
 ## User Stories
 - [x] User can paste JSON syntax into a text box
