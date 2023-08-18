@@ -122,7 +122,7 @@ const getRows = parsedJSON => {
 
 const clearData = () => {
     jsonInput.value = null;
-    csvOutput.innerHTML = null;
+    csvOutput.value = null;
 }
 
 convertButton.addEventListener("click", () => {
