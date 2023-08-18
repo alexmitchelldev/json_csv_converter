@@ -116,14 +116,14 @@ const getRows = parsedJSON => {
     return rows;
 };
 
-convertButton.addEventListener("click", () => {
-    convertJsonToCsv(jsonInput.value);
-})
-
 const clearData = () => {
     jsonInput.value = null;
     csvOutput.innerHTML = null;
 }
+
+convertButton.addEventListener("click", () => {
+    convertJsonToCsv(jsonInput.value);
+});
 
 clearDataButton.addEventListener("click", () => {
     clearData();
