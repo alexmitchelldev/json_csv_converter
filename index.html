@@ -5,38 +5,52 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Abel&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
     <title>Alexmitchelldev's JSON to CSV Converter</title>
 </head>
 
 <body>
-    <div class="container">
+    <div class="container text-center">
+        <h1 class="main-title">JSON CSV Converter</h1>
+        <p>Easily convert JSON to CSV and vice versa!</p>
+        <p>Simply paste or import your JSON or CSV data into one of the below boxes and click convert!</p>
+        <p class="text-2xl"><strong>Please note the app does not currently support nested JSON structures.</strong></p>
         <div class="content">
             <div id="json-input">
-                <h1 class="data-box-title">JSON Input</h1>
+                <h2 class="textarea-title">JSON</h2>
                 <form action="">
                     <!-- How to create a multi line text input with <textarea></textarea> -->
                     <!-- https://www.w3docs.com/snippets/html/how-to-create-a-multi-line-text-input-field-in-html.html -->
-                    <textarea name="text" id="json-data-input" class="textarea"
-                        placeholder="Enter JSON data..."></textarea>
+                    <textarea name="text" id="json-data-input" class="textarea rounded-lg"
+                        placeholder="Paste or Import JSON data..."></textarea>
                 </form>
-                <button class="file-button" id="import-json-button">Import .json or .txt file</button>
+                <button class="file-button rounded-lg" id="import-json-button">Import</button>
+                <button class="file-button rounded-lg" id="save-json-button">Save</button>
             </div>
             <div>
-                <button id="convert-json-button">Convert</button>
-                <button id="clear-data-button">Clear Data</button>
+                <button id="convert-json-button"
+                    class="function-button convert rounded-lg text-white mb-2">Convert</button>
+                <button id="clear-data-button" class="function-button clear rounded-lg text-white">Clear</button>
             </div>
             <div id="csv-output">
-                <h1 class="data-box-title">CSV Output</h1>
+                <h2 class="textarea-title">CSV</h2>
                 <form action="">
                     <!-- How to make a textarea read only using readonly -->
                     <!-- https://stackoverflow.com/questions/36824716/how-to-disable-text-input-in-textarea -->
-                    <textarea name="text" id="csv-data-output" class="textarea"
-                        placeholder="CSV Data will be outputted here..."></textarea>
+                    <textarea name="text" id="csv-data-output" class="textarea rounded-lg"
+                        placeholder="Paste or Import CSV data..."></textarea>
                 </form>
-                <button class="file-button" id="save-csv-button">Save as .csv file</button>
+                <button class="file-button rounded-lg" id="import-csv-button">Import</button>
+                <button class="file-button rounded-lg" id="save-csv-button">Save</button>
             </div>
         </div>
     </div>
+    <footer class="footer">
+        <p>&copy; Copyright 2023 alexmitchelldev</p>
+    </footer>
     <script src="./index.js"></script>
 </body>
 

@@ -1,6 +1,8 @@
 body {
     padding: 0;
     margin: 0;
+    background-color: #e4f9e7;
+    font-family: 'Abel', sans-serif;
 }
 
 .container {
@@ -15,12 +17,68 @@ body {
     align-items: center;
 }
 
+.footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    font-size: 1.25em;
+}
+
 .file-button {
     margin: 0 auto;
     display: block;
+    height: 60px;
+    width: 175px;
+    background-color: #80ED99;
+    border: solid 1px #449e77;
+    display: inline;
+    font-size: 1.3em;
+}
+
+.file-button:hover {
+    background-color: #C7F9CC;
+    color: #22577A;
+}
+
+.function-button {
+    height: 60px;
+    width: 150px;
+    font-size: 1.3em;
+}
+
+.clear {
+    background-color: #a53838;
+    border: solid 1px #7a2222;
+}
+
+.clear:hover {
+    background-color: #bf7f7f;
+}
+
+.convert {
+    background-color: #38A3A5;
+    border: solid 1px #22577A;
+}
+
+.convert:hover {
+    background-color: #84c7c8;
 }
 
 .textarea {
-    height: 35em;
-    width: 40em;
+    height: 25em;
+    width: 30em;
+    border: solid 1px rgba(170, 170, 170, 0.411);
+    background-color: #f8fdf9;
+    outline: none;
+    font-size: 1.2em;
+}
+
+.textarea-title {
+    font-size: 3em;
+}
+
+.main-title {
+    font-size: 4em;
 }
