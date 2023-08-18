@@ -2,6 +2,7 @@ const jsonInput = document.getElementById("json-data-input");
 const csvOutput = document.getElementById("csv-data-output");
 const convertButton = document.getElementById("convert-json-button");
 const clearDataButton = document.getElementById("clear-data-button");
+const saveCsvButton = document.getElementById("save-csv-button");
 const importJsonButton = document.getElementById("import-json-button");
 
 /**
@@ -153,3 +154,26 @@ importJsonButton.addEventListener("click", async () => {
         console.log(`The following error occured when trying to import the file:\n"${error}"`);
     }
 })
+
+saveCsvButton.addEventListener("click", async () => {
+    const options = {
+        suggestedName: 'JSON to CSV.csv',
+        startIn: 'documents',
+        types: [
+            {
+                description: 'JSON output to CSV',
+                accept: {
+                    'text/plain': ['.csv']
+                }
+            }
+        ]
+    }
+    try {
+        const handle = await window.showSaveFilePicker(options);
+        const csvFile = await handle.createWritable();
+        await csvFile.write(csvOutput.value);
+        await csvFile.close();
+    } catch (error) {
+        console.log(`The following error occured when trying to save the file:\n"${error}"`);
+    }
+});
