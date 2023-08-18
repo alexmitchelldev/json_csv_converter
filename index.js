@@ -7,17 +7,17 @@ const importJsonButton = document.getElementById("import-json-button");
 
 /**
  * 
- * @param {String} jsonData
+ * @param {String} data
  * @returns {Void}
  */
-const convertJsonToCsv = jsonData => {
+const convert = (data, method) => {
     let parsedJSON;
 
     try {
-        parsedJSON = JSON.parse(jsonData);
+        parsedJSON = JSON.parse(data);
     } catch {
         let message;
-        message = (jsonData === null || jsonData === ``) ?  `No text entered.` : `Incorrectly formatted JSON.`;
+        message = (data === null || data === ``) ?  `No text entered.` : `Incorrectly formatted JSON.`;
         alert(`Failed to parse JSON data: ${message}`);
         csvOutput.innerHTML = null;
     }
@@ -34,7 +34,7 @@ const convertJsonToCsv = jsonData => {
         }
     }
 
-    csvOutput.innerHTML = csvString;
+    csvOutput.value = csvString;
 };
 
 /**
@@ -126,7 +126,13 @@ const clearData = () => {
 }
 
 convertButton.addEventListener("click", () => {
-    convertJsonToCsv(jsonInput.value);
+    const method = csvOutput.value === null ? 'json' : 'csv';
+    if (jsonInput.value && csvOutput.value) {
+        alert(`Data detected in both JSON and CSV input fields. Please clear one before converting.`);
+        return;
+    }
+
+    convert(jsonInput.value, method);
 });
 
 clearDataButton.addEventListener("click", () => {
