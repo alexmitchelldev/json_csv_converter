@@ -15,8 +15,12 @@ body {
     align-items: center;
 }
 
-.data-box {
-    height: 750px;
-    width: 500px;
-    background-color: black;
+.file-button {
+    margin: 0 auto;
+    display: block;
+}
+
+.textarea {
+    height: 35em;
+    width: 40em;
 }
