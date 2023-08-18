@@ -8,6 +8,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Abel&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+        integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://cdn.tailwindcss.com"></script>
     <title>Alexmitchelldev's JSON to CSV Converter</title>
 </head>
@@ -27,13 +30,21 @@
                     <textarea name="text" id="json-data-input" class="textarea rounded-lg"
                         placeholder="Paste or Import JSON data..."></textarea>
                 </form>
-                <button class="file-button rounded-lg" id="import-json-button">Import</button>
-                <button class="file-button rounded-lg" id="save-json-button">Save</button>
+                <button class="file-button rounded-lg" id="import-json-button">
+                    Import
+                    <i class="fa-solid fa-file-import"></i>
+                </button>
+                <button class="file-button rounded-lg" id="save-json-button">
+                    Save
+                    <i class="fa-solid fa-floppy-disk"></i></button>
             </div>
             <div>
-                <button id="convert-json-button"
-                    class="function-button convert rounded-lg text-white mb-2">Convert</button>
-                <button id="clear-data-button" class="function-button clear rounded-lg text-white">Clear</button>
+                <button id="convert-json-button" class="function-button convert rounded-lg text-white mb-2">Convert
+                    <i class="fa-solid fa-rotate"></i></button>
+                <button id="clear-data-button" class="function-button clear rounded-lg text-white">
+                    Clear
+                    <i class="fa-solid fa-trash"></i>
+                </button>
             </div>
             <div id="csv-output">
                 <h2 class="textarea-title">CSV</h2>
@@ -43,8 +54,14 @@
                     <textarea name="text" id="csv-data-output" class="textarea rounded-lg"
                         placeholder="Paste or Import CSV data..."></textarea>
                 </form>
-                <button class="file-button rounded-lg" id="import-csv-button">Import</button>
-                <button class="file-button rounded-lg" id="save-csv-button">Save</button>
+                <button class="file-button rounded-lg" id="import-csv-button">
+                    Import
+                    <i class="fa-solid fa-file-import"></i>
+                </button>
+                <button class="file-button rounded-lg" id="save-csv-button">
+                    Save
+                    <i class="fa-solid fa-floppy-disk"></i>
+                </button>
             </div>
         </div>
     </div>
