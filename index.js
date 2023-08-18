@@ -171,6 +171,10 @@ saveCsvButton.addEventListener("click", async () => {
         ]
     }
     try {
+        if (csvOutput.value === null || csvOutput.value === "") {
+            alert('No data output detected. Please ensure you have converted your JSON file correctly.');
+            return;
+        }
         const handle = await window.showSaveFilePicker(options);
         const csvFile = await handle.createWritable();
         await csvFile.write(csvOutput.value);
