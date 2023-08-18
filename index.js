@@ -16,7 +16,9 @@ const convertJsonToCsv = jsonData => {
     try {
         parsedJSON = JSON.parse(jsonData);
     } catch {
-        alert(`Failed to parse JSON data. Please check the text you have entered is correctly formatted JSON.`);
+        let message;
+        message = (jsonData === null || jsonData === ``) ?  `No text entered.` : `Incorrectly formatted JSON.`;
+        alert(`Failed to parse JSON data: ${message}`);
         csvOutput.innerHTML = null;
     }
 
