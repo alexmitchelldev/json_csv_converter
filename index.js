@@ -2,6 +2,7 @@ const jsonInput = document.getElementById("json-data-input");
 const csvOutput = document.getElementById("csv-data-output");
 const convertButton = document.getElementById("convert-json-button");
 const clearDataButton = document.getElementById("clear-data-button");
+const importJsonButton = document.getElementById("import-json-button");
 
 /**
  * 
@@ -127,4 +128,28 @@ convertButton.addEventListener("click", () => {
 
 clearDataButton.addEventListener("click", () => {
     clearData();
+});
+
+// Opening and Saving files through the File System Access API
+// https://developer.chrome.com/articles/file-system-access/
+let fileHandle;
+importJsonButton.addEventListener("click", async () => {
+    try {
+        [fileHandle] = await window.showOpenFilePicker();
+    /**
+     * https://w3c.github.io/FileAPI/ 
+     * @returns {FileObject}
+     */
+    const jsonFile = await fileHandle.getFile();
+    const fileExtension = jsonFile.name.split('.').pop();
+    if (!/^json$/.test(fileExtension) && !/^txt$/.test(fileExtension)) {
+        alert('Not supported file extension detected. You can only import .json or .txt files.');
+        return;
+    }
+    const jsonData = await jsonFile.text();
+    jsonInput.value = jsonData;
+    
+    } catch (error) {
+        console.log(`The following error occured when trying to import the file:\n"${error}"`);
+    }
 })
