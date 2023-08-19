@@ -26,7 +26,7 @@ The app currently supports any of the below completed user stories.
 - [ ] User can enter the path the CSV file is to be saved to in a text box
 - [x] User can click a 'Save' button to save the CSV file to the local file system
 - [x] User can see a warning message if the CSV text box is empty or if the save operation failed.
-- [ ] User can convert CSV data to JSON. See CSV2JSON
+- [x] User can convert CSV data to JSON. See CSV2JSON
 
 [app-ideas-repo]: https://github.com/florinpop17/app-ideas/tree/master
 [live-preview]: https://alexmitchelldev.github.io/json_to_csv/
