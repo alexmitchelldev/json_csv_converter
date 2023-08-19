@@ -1,5 +1,15 @@
-This project was taken from [Florin Pop's App Ideas GitHub repository][app-ideas-repo].
-It is written in plain html/css/JavaScript.
+JSON CSV converter converts JSON to CSV and CSV to JSON.
+The app is built with:
+- HTML
+- CSS
+- JavaScript
+
+You can see a live preview of the app [here][live-preview].
+
+## Motivation
+The idea behind this app was taken from [Florin Pop's App Ideas GitHub repository][app-ideas-repo].
+
+## Functionality
 The app currently supports any of the below completed user stories.
 
 ## User Stories
@@ -19,3 +29,4 @@ The app currently supports any of the below completed user stories.
 - [ ] User can convert CSV data to JSON. See CSV2JSON
 
 [app-ideas-repo]: https://github.com/florinpop17/app-ideas/tree/master
+[live-preview]: https://alexmitchelldev.github.io/json_to_csv/
