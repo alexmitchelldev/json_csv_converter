@@ -4,6 +4,7 @@ const convertButton = document.getElementById("convert-json-button");
 const clearDataButton = document.getElementById("clear-data-button");
 const saveCsvButton = document.getElementById("save-csv-button");
 const importJsonButton = document.getElementById("import-json-button");
+const importCsvButton = document.getElementById("import-csv-button");
 
 /**
  * 
@@ -17,7 +18,7 @@ const convert = (data, method) => {
         parsedJSON = JSON.parse(data);
     } catch {
         let message;
-        message = (data === null || data === ``) ?  `No text entered.` : `Incorrectly formatted JSON.`;
+        message = (data === null || data === ``) ? `No text entered.` : `Incorrectly formatted JSON.`;
         alert(`Failed to parse JSON data: ${message}`);
         csvDataArea.innerHTML = null;
     }
@@ -44,11 +45,11 @@ const convert = (data, method) => {
  */
 const createCsvData = jsonData => {
     const keys = Object.keys(jsonData);
-    const columns = keys.map((key) => { return `"${key}"`});
+    const columns = keys.map((key) => { return `"${key}"` });
     const rows = getRows(jsonData);
     let csvData = [columns];
-    
-    
+
+
     const numRows = rows.length;
     let i;
 
@@ -70,7 +71,7 @@ const getNumRows = parsedJSON => {
     for (const key in parsedJSON) {
         if (Array.isArray(parsedJSON[key]) && parsedJSON[key].length > numRows) {
             numRows = parsedJSON[key].length;
-        } 
+        }
     }
 
     return numRows;
@@ -85,7 +86,7 @@ const getNumRows = parsedJSON => {
 const initRows = (numRows, numColumns) => {
     let rows = [];
     let i, j;
-    
+
     for (i = 0; i < numRows; i++) {
         let row = [];
         for (j = 0; j < numColumns; j++) {
@@ -139,29 +140,47 @@ clearDataButton.addEventListener("click", () => {
     clearData();
 });
 
-// Opening and Saving files through the File System Access API
-// https://developer.chrome.com/articles/file-system-access/
-let fileHandle;
-importJsonButton.addEventListener("click", async () => {
+const importData = async (dataType) => {
+    // Opening and Saving files through the File System Access API
+    // https://developer.chrome.com/articles/file-system-access/
+    let fileHandle;
+
     try {
         [fileHandle] = await window.showOpenFilePicker();
-    /**
-     * https://w3c.github.io/FileAPI/ 
-     * @returns {FileObject}
-     */
-    const jsonFile = await fileHandle.getFile();
-    const fileExtension = jsonFile.name.split('.').pop();
-    if (!/^json$/.test(fileExtension) && !/^txt$/.test(fileExtension)) {
-        alert('Not supported file extension detected. You can only import .json or .txt files.');
-        return;
-    }
-    const jsonData = await jsonFile.text();
-    jsonDataArea.value = jsonData;
-    
+        /**
+         * https://w3c.github.io/FileAPI/ 
+         * @returns {FileObject}
+         */
+        const jsonFile = await fileHandle.getFile();
+        const fileExtension = jsonFile.name.split('.').pop();
+
+        if (dataType === 'json') {
+            if (!/^json$/.test(fileExtension) && !/^txt$/.test(fileExtension)) {
+                alert('Not supported file extension detected. You can only import .json or .txt files.');
+                return;
+            }
+        } else if (dataType === 'csv') {
+            if (!/^csv$/.test(fileExtension) && !/^txt$/.test(fileExtension)) {
+                alert('Not supported file extension detected. You can only import .csv or .txt files.');
+                return;
+            }
+        }
+
+        const data = await jsonFile.text();
+        if (dataType === 'json') {
+            jsonDataArea.value = data;
+        } else if (dataType === 'csv') {
+            csvDataArea.value = data;
+        }
+
     } catch (error) {
         console.log(`The following error occured when trying to import the file:\n"${error}"`);
     }
-})
+};
+
+importJsonButton.addEventListener("click", () => { importData("json") });
+importCsvButton.addEventListener("click", () => { importData("csv") });
+
 
 saveCsvButton.addEventListener("click", async () => {
     const options = {
