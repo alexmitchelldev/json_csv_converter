@@ -1,5 +1,5 @@
-const jsonInput = document.getElementById("json-data-input");
-const csvOutput = document.getElementById("csv-data-output");
+const jsonDataArea = document.getElementById("json-data-area");
+const csvDataArea = document.getElementById("csv-data-area");
 const convertButton = document.getElementById("convert-json-button");
 const clearDataButton = document.getElementById("clear-data-button");
 const saveCsvButton = document.getElementById("save-csv-button");
@@ -19,7 +19,7 @@ const convert = (data, method) => {
         let message;
         message = (data === null || data === ``) ?  `No text entered.` : `Incorrectly formatted JSON.`;
         alert(`Failed to parse JSON data: ${message}`);
-        csvOutput.innerHTML = null;
+        csvDataArea.innerHTML = null;
     }
 
     const csvData = createCsvData(parsedJSON);
@@ -34,7 +34,7 @@ const convert = (data, method) => {
         }
     }
 
-    csvOutput.value = csvString;
+    csvDataArea.value = csvString;
 };
 
 /**
@@ -121,18 +121,18 @@ const getRows = parsedJSON => {
 };
 
 const clearData = () => {
-    jsonInput.value = null;
-    csvOutput.value = null;
+    jsonDataArea.value = null;
+    csvDataArea.value = null;
 }
 
 convertButton.addEventListener("click", () => {
-    const method = csvOutput.value === null ? 'json' : 'csv';
-    if (jsonInput.value && csvOutput.value) {
+    const method = csvDataArea.value === null ? 'json' : 'csv';
+    if (jsonDataArea.value && csvDataArea.value) {
         alert(`Data detected in both JSON and CSV input fields. Please clear one before converting.`);
         return;
     }
 
-    convert(jsonInput.value, method);
+    convert(jsonDataArea.value, method);
 });
 
 clearDataButton.addEventListener("click", () => {
@@ -156,7 +156,7 @@ importJsonButton.addEventListener("click", async () => {
         return;
     }
     const jsonData = await jsonFile.text();
-    jsonInput.value = jsonData;
+    jsonDataArea.value = jsonData;
     
     } catch (error) {
         console.log(`The following error occured when trying to import the file:\n"${error}"`);
@@ -177,13 +177,13 @@ saveCsvButton.addEventListener("click", async () => {
         ]
     }
     try {
-        if (csvOutput.value === null || csvOutput.value === "") {
+        if (csvDataArea.value === null || csvDataArea.value === "") {
             alert('No data output detected. Please ensure you have converted your JSON file correctly.');
             return;
         }
         const handle = await window.showSaveFilePicker(options);
         const csvFile = await handle.createWritable();
-        await csvFile.write(csvOutput.value);
+        await csvFile.write(csvDataArea.value);
         await csvFile.close();
     } catch (error) {
         console.log(`The following error occured when trying to save the file:\n"${error}"`);
