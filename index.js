@@ -12,18 +12,23 @@ const importCsvButton = document.getElementById("import-csv-button");
  * @returns {Void}
  */
 const convert = (data, method) => {
-    let parsedJSON;
+    let parsedData;
 
     try {
-        parsedJSON = JSON.parse(data);
+        parsedData = method === 'json' ? JSON.parse(data) : csvToJson(data);
     } catch {
         let message;
-        message = (data === null || data === ``) ? `No text entered.` : `Incorrectly formatted JSON.`;
-        alert(`Failed to parse JSON data: ${message}`);
+        message = (data === null || data === ``) ? `No text entered.` : `Incorrectly formatted ${method.toUpperCase()}.`;
+        alert(`Failed to parse ${method.toUpperCase()} data: ${message}`);
         csvDataArea.innerHTML = null;
     }
 
-    const csvData = createCsvData(parsedJSON);
+    if (method === 'csv') {
+        jsonDataArea.value = parsedData;
+        return;
+    }
+
+    const csvData = createCsvData(parsedData);
     let csvString = '';
 
     for (const row of csvData) {
@@ -37,6 +42,39 @@ const convert = (data, method) => {
 
     csvDataArea.value = csvString;
 };
+
+const csvToJson = csvData => {
+    let obj = {};
+
+    const rows = csvData.split("\n");
+    const columns = rows[0].split(",").map((key) => { return key.replace(/"/g, "") });
+
+    for (const column of columns) {
+        obj[column] = [];
+    }
+
+    for (let i = 1; i < rows.length; i++) {
+        let currentRow = rows[i].split(",");
+
+        for (let j = 0; j < currentRow.length; j++) {
+            if (currentRow[j] !== "") {
+                obj[columns[j]].push(currentRow[j]);
+            }
+        }
+    }
+
+    for (const column in obj) {
+        if (obj[column].length === 1) {
+            obj[column] = obj[column][0];
+            if (/^[0-9]$/.test(obj[column])) {
+                obj[column] = parseInt(obj[column]);
+            }
+        }
+    }
+
+    const csvString = JSON.stringify(obj, null, 4);
+    return csvString;
+}
 
 /**
  * 
@@ -127,13 +165,15 @@ const clearData = () => {
 }
 
 convertButton.addEventListener("click", () => {
-    const method = csvDataArea.value === null ? 'json' : 'csv';
     if (jsonDataArea.value && csvDataArea.value) {
         alert(`Data detected in both JSON and CSV input fields. Please clear one before converting.`);
         return;
     }
 
-    convert(jsonDataArea.value, method);
+    const method = (csvDataArea.value === null || csvDataArea.value === '') ? 'json' : 'csv';
+    const data = method === 'json' ? jsonDataArea.value : csvDataArea.value;
+
+    convert(data, method);
 });
 
 clearDataButton.addEventListener("click", () => {
